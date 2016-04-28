@@ -3,7 +3,7 @@
 <head>
 <style>
 #header {
-    background-color:black;
+    background-color:blue;
     color:white;
     text-align:center;
     padding:5px;
@@ -46,6 +46,10 @@
 </div>
 
 <div id="nav">
+  <%= image_tag @user.avatar.url %> <br>
+  <% if @user == current_user %>
+    <%= link_to 'Change Pic', "/addpic/#{current_user.id}" %> <br>
+  <% end %>
   <strong>Email:</strong>
   <%= @user.email %><br>
   <p>
@@ -57,7 +61,7 @@
       <li>
         <%= ele.text %>
         <%= "from #{ele.getsender}" %>
-        <%= link_to 'Accept', ele , method: :accept%> |
+        <%= link_to 'Accept', ele , method: :post%> |
         <%= link_to 'Reject', ele , method: :delete%> <br>
       </li>
       <% end%>

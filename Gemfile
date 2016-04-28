@@ -10,7 +10,6 @@ gem 'sass-rails'
 gem 'jquery-rails'
 
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
 gem 'pg'
 
 # Use ActiveModel has_secure_password
@@ -18,9 +17,16 @@ gem 'bcrypt'
 
 gem 'uglifier'
 
+# Amazon web services
+gem 'aws-sdk-v1'
+ 
+# Images
+gem 'paperclip'
+
 
 group :development do
   gem 'pry'
+  gem 'sqlite3'
 end
 
 group :test do

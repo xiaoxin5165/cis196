@@ -1,0 +1,16 @@
+<h1>New User</h1>
+
+<%= form_for(@user, multipart: true, url: "/postpic/#{@user.id}" , html: { method: "post" }) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Update profile' %>
+    <%= link_to 'Nevermind', users_path, class: 'button' %>
+  </div>
+<% end %>

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :incomingrequests, class_name: 'Request', foreign_key: 'recipient_id'
   has_many :outgoingrequests, class_name: 'Request', foreign_key: 'sender_id'
   has_and_belongs_to_many :friends, class_name: 'User', join_table: 'friends_users', association_foreign_key: 'friend_id'
+  has_attached_file :avatar
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validates :name, presence: true, uniqueness: true, length: { minimum: 2 }
   validates :email, presence: true
   validates :password, presence: true

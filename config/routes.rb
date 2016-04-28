@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'requests/:id' => 'requests#accept'
   get 'unfriend/:id' => 'users#unfriend'
   get 'followup/:id' => 'statuses#followup'
+  get 'addpic/:id' => 'users#addpic'
+  post 'postpic/:id' => 'users#postpic'
   post 'followup' => 'statuses#follow'
   post 'like/:page_id/:id' => 'statuses#like'
   post 'unlike/:page_id/:id' => 'statuses#unlike'

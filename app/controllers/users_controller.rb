@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :acceptfriend]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :acceptfriend, :addpic, :postpic]
 
   # GET /users
   def index
@@ -17,6 +17,16 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+  end
+
+  def addpic
+  end
+
+  def postpic
+    @user.avatar = params[:user][:avatar]
+  
+    @user.save
+    redirect_to current_user, notice: 'Your profile picture has been updated.'
   end
 
   def unfriend
