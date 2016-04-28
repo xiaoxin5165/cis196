@@ -16,6 +16,9 @@ gem 'pg'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
+gem 'uglifier'
+
+
 group :development do
   gem 'pry'
 end
