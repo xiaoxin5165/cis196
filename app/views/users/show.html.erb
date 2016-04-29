@@ -99,31 +99,39 @@
   <% @user.statuses.each do |ele| %>
   <p>
     <%= ele.text%>
+
     <% if logged_in? && current_user == @user %>
       <%= link_to 'edit', edit_status_path(ele) %> |
       <td>
         <%= link_to 'Destroy', ele, method: :delete, data: { confirm: 'Are you sure?' } %>
       </td> |
     <% end %>
+
     <% unless ele.likes.include?(current_user)%>   
       <%= link_to 'Like', "/like/#{@user.id}/#{ele.id}", method: :post%>   
     <%end%>
+
     <% if ele.likes.include?(current_user)%>   
       <%= link_to 'Unlike', "/unlike/#{@user.id}/#{ele.id}", method: :post%> 
     <% end %>  
+
   <%= "#{ele.likes.length} likes" %>
   <% ele.followups.each do |extra| %>
     <li>    
       <%= extra.text%>
+
       <% if current_user.replies.include?(extra) || current_user == @user%>
         <%= link_to 'Delete', "/followup/#{ele.id}/delete/#{extra.id}", method: :delete, data: { confirm: 'Are you sure?' } %> 
       <%end%>
+
       <% unless extra.likes.include?(current_user)%>   
         <%= link_to 'Like', "/like/#{@user.id}/#{extra.id}", method: :post%>   
       <%end%>
+
       <% if extra.likes.include?(current_user)%>   
         <%= link_to 'Unlike', "/unlike/#{@user.id}/#{extra.id}", method: :post%> 
       <% end %>  
+      
   <%= "#{extra.likes.length} likes" %>
     </li>
   <% end %>

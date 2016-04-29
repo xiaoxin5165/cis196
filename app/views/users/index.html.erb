@@ -16,16 +16,20 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+
         <% if logged_in? && user != current_user && !current_user.friends.include?(user)%>
           <td><%= link_to 'Send Friend Request', new_request_path(recipient_id: user.id) %></td>
         <% end %>
+
         <% if logged_in? && user != current_user && current_user.friends.include?(user)%>
           <td><%= link_to 'Show', user %></td>
           <td><%= link_to 'Unfriend', "unfriend/#{user.id}", data: { confirm: 'You hate this person?' } %></td>
         <% end %>
+
         <% if logged_in? && user == current_user %>
           <td><%= link_to 'Show', user %></td>
         <% end %>
+        
         <% if logged_in? && user == current_user %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

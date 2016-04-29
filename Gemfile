@@ -19,10 +19,9 @@ gem 'uglifier'
 
 # Amazon web services
 gem 'aws-sdk-v1'
- 
+
 # Images
 gem 'paperclip'
-
 
 group :development do
   gem 'pry'

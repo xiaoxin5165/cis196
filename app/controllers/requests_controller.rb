@@ -20,14 +20,17 @@ class RequestsController < ApplicationController
   end
 
   def accept
+    # when accepted add it friends bothways
     @user.friends.append(@request.from)
     @request.from.friends.append(@user)
+    # destroy the request
     @request.destroy
     redirect_to @user, notice: 'You have accepted the friend.'
   end
 
   # DELETE /users/1
   def destroy
+    # destroy the request
     @request.destroy
     redirect_to @user, notice: 'Request was successfully rejected.'
   end

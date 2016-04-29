@@ -19,17 +19,19 @@ class UsersController < ApplicationController
   def edit
   end
 
+  # when renders addpic
   def addpic
   end
 
   def postpic
+    # save the picture
     @user.avatar = params[:user][:avatar]
-  
     @user.save
     redirect_to current_user, notice: 'Your profile picture has been updated.'
   end
 
   def unfriend
+    # find the target and remove from friend list
     @target = User.find(params[:id])
     @target.friends.delete(current_user)
     current_user.friends.delete(@target)
@@ -57,6 +59,7 @@ class UsersController < ApplicationController
   end
 
   def acceptfriend
+    # find the sender and add it to friends
     @targetuser = User[:sender_id]
     @user.friendships.append(@targetuser)
   end

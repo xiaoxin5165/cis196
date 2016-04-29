@@ -31,12 +31,14 @@ class StatusesController < ApplicationController
   end
 
   def like
+    # if a status is liked append to likes
     @status.likes.append(current_user)
     @owner = User.find(params[:page_id])
     redirect_to @owner, notice: 'You liked the comment.'
   end
 
   def unlike
+    # if unlike remove the user from likes
     @status.likes.delete(current_user)
     @owner = User.find(params[:page_id])
     redirect_to @owner, notice: 'You unliked the comment.'
@@ -47,16 +49,20 @@ class StatusesController < ApplicationController
   end
 
   def fodelete
+    # delete if from status
     @status = Status.find(params[:id])
     Status.find(params[:delete_id]).destroy
     redirect_to User.find(@status.user_id), notice: 'you have deleted your followup.'
   end
 
   def follow
+    # make a new status
     @status = Status.new(text: params[:status][:text])
     if @status.save
+      # then append to parent status
       @parent = Status.find(params[:status][:parent_id])
       @parent.followups.append(@status)
+      # append to replies
       current_user.replies.append(@status)
       redirect_to User.find(@parent.user_id), notice: 'You have commented successfully.'
     else
